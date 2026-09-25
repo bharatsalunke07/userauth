@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+
+    <div class="auth-card">
+
+        <h1>Welcome Back</h1>
+
+        <p class="auth-subtitle">
+            Login to access your dashboard
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+    <p class="error-message">{{ error }}</p>
+{% endif %}
+
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            
+
+<div class="password-field">
+    <input type="password" name="password" id="login-password" required>
+
+    <button
+        type="button"
+        class="toggle-password"
+        data-target="login-password">
+        👁
+    </button>
+</div>
+             <a href="{% url 'password_reset' %}" class="forgot-password">
+    Forgot Password?
+</a>
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="auth-link">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create Account</a>
+        </p>
+        <a href="{% url 'home' %}" class="home-button">
+    Home
+</a>
+
+    </div>
+    <script src="{% static 'accounts/js/script.js' %}"></script>
+
+</body>
+</html>

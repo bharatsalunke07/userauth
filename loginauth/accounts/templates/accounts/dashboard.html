@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="dashboard-card">
+
+        <h1>Welcome, {{ user.username }}! </h1>
+
+        <p class="welcome-text">
+            You are successfully logged in.
+        </p>
+
+        <div class="user-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <a class="logout-button" href="{% url 'logout' %}">
+            Logout
+        </a>
+        <div class="danger-zone">
+    <h2>Account Settings</h2>
+
+    <p>
+        Permanently delete your account
+        This action cannot be undone.
+    </p>
+
+    <form method="POST"
+          action="{% url 'delete_account' %}"
+          onsubmit="return confirm('Are you sure you want to permanently delete your account? This cannot be undone.');">
+
+        {% csrf_token %}
+
+        <button type="submit" class="delete-account-button">
+            Delete Account
+        </button>
+    </form>
+</div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+     
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create account</title>
+    
+</head>
+
+<body>
+
+    <div class="auth-card">
+
+        <h1>Create Account</h1>
+
+        <p class="auth-subtitle">
+            Create your account to get started
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+       {% if messages %}
+    {% for message in messages %}
+        <p class="error-message">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+        
+
+<div class="password-field">
+    <input type="password" name="password" id="password" required>
+    <button type="button" class="toggle-password" data-target="password">
+        👁
+    </button>
+</div>
+
+            <label>Confirm Password</label>
+            
+
+<div class="password-field">
+    <input type="password" name="confirm_password" id="confirm_password" required>
+    <button type="button" class="toggle-password" data-target="confirm_password">
+        👁
+    </button>
+</div>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <p class="auth-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+        <a href="{% url 'home' %}" class="home-button">
+    Home
+</a>
+
+    </div>
+
+    <script src="{% static 'accounts/js/script.js' %}"></script>
+
+</body>
+</html>

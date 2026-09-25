@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Email</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="auth-card">
+
+        <h1>Verify Your Email</h1>
+
+        <p class="auth-subtitle">
+            We have sent a 6-digit verification code
+            to your email address.
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error-message">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="otp">Enter OTP</label>
+
+            <input
+                type="text"
+                id="otp"
+                name="otp"
+                maxlength="6"
+                minlength="6"
+                pattern="[0-9]{6}"
+                inputmode="numeric"
+                placeholder="Enter 6-digit OTP"
+                required
+            >
+
+            <button type="submit">
+                Verify Email
+            </button>
+        </form>
+
+       <p class="auth-link">
+    Didn't receive the code?
+</p>
+
+<a href="{% url 'resend_otp' %}" class="home-button">
+    Resend OTP
+</a>
+
+        <a href="{% url 'home' %}" class="home-button">
+            Home
+        </a>
+
+    </div>
+
+</body>
+</html>

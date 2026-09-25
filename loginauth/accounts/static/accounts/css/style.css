@@ -1,0 +1,803 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   HOME PAGE
+========================================= */
+
+.welcome-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #b5b3da 0%, transparent 35%),
+        radial-gradient(circle at 80% 20%, #e0bb6c 0%, transparent 35%),
+        radial-gradient(circle at 50% 90%, #92ebb8 0%, transparent 40%),
+        linear-gradient(135deg, #020617, #111827, #1e1b4b);
+}
+
+
+/* RGB glowing circles */
+
+.welcome-container::before,
+.welcome-container::after {
+    content: "";
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: 0.7;
+
+    animation: rgbMove 8s ease-in-out infinite alternate;
+}
+
+.welcome-container::before {
+    background: #e3b3d9;
+    top: 10%;
+    left: 10%;
+}
+
+.welcome-container::after {
+    background: #b7e1e4;
+    bottom: 10%;
+    right: 10%;
+
+    animation-delay: 2s;
+}
+
+
+@keyframes rgbMove {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(80px, -50px) scale(1.2);
+    }
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 75px;
+
+    padding: 0 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    z-index: 10;
+}
+
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 20px #00eaff;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+
+.nav-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.nav-links a:hover {
+    color: #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff;
+}
+
+
+/* =========================================
+   GLASS WELCOME CARD
+========================================= */
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    width: 550px;
+
+    padding: 60px 45px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+
+.welcome-content h1 {
+    margin-bottom: 20px;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #7c3aed;
+}
+
+
+.welcome-content p {
+    margin-bottom: 35px;
+
+    color: #d9e1ff;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   HOME BUTTONS
+========================================= */
+
+.welcome-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 18px;
+}
+
+
+.login-button,
+.register-button {
+    display: inline-block;
+
+    padding: 14px 32px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.login-button {
+    background: linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+    box-shadow:
+        0 0 20px rgba(0, 198, 255, 0.35);
+}
+
+
+.register-button {
+    background: linear-gradient(
+        135deg,
+        #ff00cc,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 0 20px rgba(255, 0, 204, 0.35);
+}
+
+
+.login-button:hover,
+.register-button:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+
+/* =========================================
+   AUTH PAGES
+========================================= */
+
+body:has(.auth-card) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ff00cc, transparent 35%),
+        radial-gradient(circle at 80% 80%, #00eaff, transparent 35%),
+        linear-gradient(135deg, #09001a, #111936);
+
+    color: white;
+}
+
+
+.auth-card {
+    width: 450px;
+
+    padding: 35px;
+
+    margin: 20px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+
+    text-align: center;
+}
+
+
+.auth-card h1 {
+    font-size: 32px;
+
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+
+.auth-subtitle {
+    color: #cfd7ff;
+
+    font-size: 15px;
+
+    margin-bottom: 30px;
+}
+
+
+.auth-card form {
+    width: 100%;
+
+    padding: 0;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+    text-align: left;
+}
+
+
+.auth-card label {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 8px;
+
+    color: #e8ecff;
+}
+
+
+.auth-card input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 5px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.auth-card input:focus {
+    border-color: #00eaff;
+
+    box-shadow:
+        0 0 10px rgba(0, 234, 255, 0.3);
+}
+
+
+.auth-card button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        #00c6ff,
+        #7c3aed
+    );
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.35);
+}
+
+.auth-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 198, 255, 0.5), 0 0 15px rgba(124, 58, 237, 0.5);
+    background: linear-gradient(
+        135deg,
+        #00d5ff,
+        #8b46ff
+    );
+}
+
+.auth-card button:active {
+    transform: translateY(0);
+}
+
+
+.auth-link {
+    margin-top: 25px;
+    color: #c9d0ef;
+    font-size: 14px;
+}
+
+
+.auth-link a {
+    color: #00eaff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.auth-link a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+
+/* Forgot Password Link */
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #00eaff !important;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+
+/* Home / Secondary Action Buttons */
+.home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.home-button:hover {
+    background: rgba(0, 234, 255, 0.2);
+    border-color: #00eaff;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+}
+
+
+/* =========================================
+   PASSWORD
+========================================= */
+
+.password-field {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+
+.password-field input {
+    width: 100%;
+    padding: 12px 45px 12px 12px;
+    margin-bottom: 0;
+}
+
+
+.password-field .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    color: #00eaff !important;
+    font-size: 16px;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.password-field .toggle-password:hover {
+    color: #ffffff !important;
+    transform: translateY(-50%) scale(1.2);
+}
+
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-message {
+    color: #ff7070;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
+    min-height: 20px;
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+body:has(.dashboard-card) {
+    display: block;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ff00cc, transparent 35%),
+        radial-gradient(circle at 80% 80%, #00eaff, transparent 35%),
+        linear-gradient(135deg, #09001a, #111936);
+
+    color: white;
+}
+
+
+.dashboard-card {
+    width: calc(100% - 40px);
+
+    max-width: 900px;
+
+    margin: 80px auto;
+
+    padding: 45px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+.dashboard-card h1 {
+    color: white;
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+
+.welcome-text {
+    color: #d5d9f0;
+
+    margin-bottom: 30px;
+
+    font-size: 19px;
+}
+
+
+.user-info {
+    margin-top: 25px;
+
+    padding: 10px 0;
+}
+
+
+.user-info p {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #eeeeff;
+}
+
+
+.user-info strong {
+    color: #00eaff;
+}
+
+
+/* Logout */
+
+.logout-button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 14px 32px;
+
+    border-radius: 14px;
+
+    background: #ff4b4b;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.logout-button:hover {
+    background: #ff2222;
+
+    transform: translateY(-2px);
+}
+
+
+/* Delete */
+
+.danger-zone {
+    margin-top: 40px;
+
+    padding-top: 30px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+.danger-zone h2 {
+    color: #ff7373;
+
+    margin-bottom: 10px;
+}
+
+
+.danger-zone p {
+    color: #c9c7df;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+.delete-account-button {
+    padding: 13px 25px;
+
+    border: 1px solid #ff5555;
+
+    border-radius: 12px;
+
+    background: rgba(255, 70, 70, 0.12);
+
+    color: #ff7777;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.delete-account-button:hover {
+    background: #ff4b4b;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .welcome-content {
+        width: calc(100% - 30px);
+
+        padding: 40px 25px;
+    }
+
+    .welcome-content h1 {
+        font-size: 32px;
+    }
+
+    .welcome-buttons {
+        flex-direction: column;
+    }
+
+    .login-button,
+    .register-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .auth-card {
+        width: calc(100% - 30px);
+
+        padding: 30px 20px;
+    }
+
+    .dashboard-card {
+        width: calc(100% - 25px);
+
+        margin: 30px auto;
+
+        padding: 30px 20px;
+    }
+
+    .dashboard-card h1 {
+        font-size: 30px;
+    }
+
+    .user-info p {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 7px;
+    }
+
+    .logout-button,
+    .delete-account-button {
+        width: 100%;
+
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .welcome-content h1 {
+        font-size: 27px;
+    }
+
+    .welcome-content p {
+        font-size: 15px;
+    }
+}

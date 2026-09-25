@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+
+    <title>Welcome</title>
+</head>
+
+<body>
+
+    <div class="welcome-container">
+        <nav class="navbar">
+    <div class="logo">UserAuth</div>
+
+    <div class="nav-links">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    </div>
+</nav>
+
+        <div class="welcome-content">
+            <h1>Welcome to UserAuth</h1>
+
+            <p>
+                Create an account or login to access your dashboard.
+            </p>
+
+            <div class="welcome-buttons">
+                <a href="{% url 'login' %}" class="login-button">
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}" class="register-button">
+                    Register
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
